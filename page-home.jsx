@@ -120,8 +120,8 @@ function HeroSection({ navigate, particles }) {
   return (
     <section style={{
       position: "relative",
-      minHeight: "100vh",
-      paddingTop: 140, paddingBottom: 80,
+      minHeight: "auto",
+      paddingTop: 140, paddingBottom: 56,
       background: "linear-gradient(135deg, var(--hero-grad-1) 0%, var(--hero-grad-2) 100%)",
       overflow: "hidden",
     }}>
@@ -202,7 +202,7 @@ function HeroSection({ navigate, particles }) {
 
         {/* Brand line strip */}
         <div style={{
-          marginTop: 100, paddingTop: 40,
+          marginTop: 56, paddingTop: 40,
           borderTop: "1px solid var(--gold-line)",
           display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 20,
           color: "var(--text-dim)", fontSize: 10, letterSpacing: "0.25em", textTransform: "uppercase",
@@ -404,25 +404,36 @@ function DifferentiatorsSection() {
 }
 
 function FeaturedProductsSection({ navigate, onView, onRequest }) {
-  const featured = featuredProducts().slice(0, 4);
+  // Prioriza os destaques e completa a grade com os demais — produtos como protagonista da home.
+  const featured = featuredProducts();
+  const list = [...featured, ...PRODUCTS.filter(p => !p.featured)].slice(0, 8);
   return (
-    <section className="section reveal" style={{ background: "var(--bg)" }}>
+    <section id="produtos" className="section reveal" style={{ background: "var(--bg)" }}>
       <div className="container">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 24 }}>
-          <div>
-            <span className="eyebrow">✦ Em destaque</span>
-            <h2 className="font-display" style={{ fontSize: "clamp(32px, 4vw, 48px)", marginTop: 20, maxWidth: 600 }}>
-              Produtos Profissionais em Destaque
+          <div style={{ maxWidth: 640 }}>
+            <span className="eyebrow">✦ Catálogo profissional</span>
+            <h2 className="font-display" style={{ fontSize: "clamp(36px, 5vw, 56px)", marginTop: 20, marginBottom: 18 }}>
+              Produtos
             </h2>
+            <p style={{ color: "var(--text-muted)", fontSize: 16, lineHeight: 1.7, maxWidth: 560 }}>
+              Bioestimuladores, ácido hialurônico, enzimas, toxina, fios, skincare e peptídeos regenerativos —
+              portfólio selecionado com procedência e suporte técnico. Todos sob consulta.
+            </p>
           </div>
           <button className="btn btn-outline" onClick={() => navigate("catalog")}>
             Ver catálogo completo
           </button>
         </div>
-        <div className="grid grid-4" style={{ marginTop: 56, gap: 24 }}>
-          {featured.map(p => (
+        <div className="grid grid-4" style={{ marginTop: 48, gap: 24 }}>
+          {list.map(p => (
             <ProductCard key={p.id} product={p} onView={onView} onRequest={onRequest} />
           ))}
+        </div>
+        <div style={{ marginTop: 40, textAlign: "center" }}>
+          <button className="btn btn-gold btn-lg" onClick={() => navigate("catalog")}>
+            Ver todos os produtos <Icon name="arrow-right" size={18} color="var(--on-gold)" />
+          </button>
         </div>
       </div>
     </section>
@@ -649,9 +660,9 @@ function HomePage({ navigate, particles, onView, onRequest, scrollTo }) {
     <div className="page">
       <HeroSection navigate={navigate} particles={particles} />
       <CredibilityBar />
+      <FeaturedProductsSection navigate={navigate} onView={onView} onRequest={onRequest} />
       <CategoriesSection navigate={navigate} />
       <DifferentiatorsSection />
-      <FeaturedProductsSection navigate={navigate} onView={onView} onRequest={onRequest} />
       <ProfessionalNoticeSection navigate={navigate} />
       <TrainingsTeaser navigate={navigate} />
       <FinalCTASection />

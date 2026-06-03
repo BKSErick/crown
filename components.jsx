@@ -72,7 +72,7 @@ function ProductImage({ product, size = "default", flat = false }) {
         }}>{getCategory(product?.category)?.title || "Produto"}</span>
         <span style={{
           fontFamily: "'Playfair Display', serif",
-          fontSize: 16, color: "var(--text)", lineHeight: 1.2,
+          fontSize: 16, color: "#fff", lineHeight: 1.2,
         }}>{product?.name}</span>
       </div>
       {/* corner accent */}
@@ -120,7 +120,16 @@ function ProductCard({ product, onView, onRequest }) {
             {product.brand}
           </p>
         </div>
-        <p style={{ color: "var(--text-muted)", fontSize: 13, marginTop: "auto" }}>
+        {product.desc && (
+          <p style={{
+            color: "var(--text-muted)", fontSize: 13, lineHeight: 1.6,
+            display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+          }}>
+            {product.desc}
+          </p>
+        )}
+        <p style={{ color: "var(--text-dim)", fontSize: 12, marginTop: "auto", letterSpacing: "0.03em" }}>
           {product.presentation}
         </p>
         <div style={{ display: "flex", gap: 10, marginTop: 8, alignItems: "center" }}>

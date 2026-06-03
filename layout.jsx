@@ -32,7 +32,35 @@ function Logo({ onClick, small }) {
   );
 }
 
-function Header({ route, navigate, cartCount, onOpenCart }) {
+// Toggle de cor para o cliente decidir entre tema preto e branco
+function ThemeSwitch({ palette, onChange }) {
+  const isWhite = palette === "white";
+  const opt = (label, value, active) => (
+    <button onClick={() => onChange(value)} style={{
+      padding: "6px 14px", fontSize: 11, fontWeight: 600,
+      letterSpacing: "0.1em", textTransform: "uppercase",
+      borderRadius: 100, transition: "all 0.2s",
+      background: active ? "var(--gold)" : "transparent",
+      color: active ? "var(--on-gold)" : "var(--text-muted)",
+    }}>{label}</button>
+  );
+  return (
+    <div style={{
+      display: "flex", alignItems: "center", gap: 4,
+      padding: 4, borderRadius: 100,
+      border: "1px solid var(--gold-line)",
+    }}>
+      <span style={{
+        fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase",
+        color: "var(--text-dim)", padding: "0 6px 0 8px",
+      }}>Cor</span>
+      {opt("Preto", "black", !isWhite)}
+      {opt("Branco", "white", isWhite)}
+    </div>
+  );
+}
+
+function Header({ route, navigate, cartCount, onOpenCart, palette, onPalette }) {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -54,7 +82,7 @@ function Header({ route, navigate, cartCount, onOpenCart }) {
   return (
     <header style={{
       ...headerStyles.outer,
-      background: scrolled ? "rgba(5,5,5,0.85)" : "transparent",
+      background: scrolled ? "var(--header-bg)" : "transparent",
       backdropFilter: scrolled ? "blur(14px) saturate(120%)" : "none",
       WebkitBackdropFilter: scrolled ? "blur(14px) saturate(120%)" : "none",
       borderBottom: "1px solid var(--gold-line)",
@@ -91,6 +119,7 @@ function Header({ route, navigate, cartCount, onOpenCart }) {
         </nav>
 
         <div className="desktop-actions" style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          {onPalette && <ThemeSwitch palette={palette} onChange={onPalette} />}
           <button
             onClick={onOpenCart}
             style={{
@@ -129,7 +158,7 @@ function Header({ route, navigate, cartCount, onOpenCart }) {
       {/* Mobile slide-out */}
       <div style={{
         position: "fixed", inset: 0,
-        background: "#050505",
+        background: "var(--bg)",
         zIndex: 200,
         transform: mobileOpen ? "translateX(0)" : "translateX(100%)",
         transition: "transform 0.35s ease",
@@ -390,7 +419,7 @@ function LGPDBanner() {
     <div style={{
       position: "fixed", bottom: 16, left: 16,
       maxWidth: 380, zIndex: 80,
-      background: "rgba(5,5,5,0.92)",
+      background: "var(--header-bg)",
       backdropFilter: "blur(16px)",
       border: "1px solid var(--gold-line)",
       borderLeft: "2px solid var(--gold)",

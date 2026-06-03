@@ -101,6 +101,8 @@ function App() {
         navigate={navigate}
         cartCount={cartCount}
         onOpenCart={() => setCartOpen(true)}
+        palette={tweaks.palette}
+        onPalette={(v) => setTweak("palette", v)}
       />
 
       <main>
@@ -162,6 +164,7 @@ function App() {
             onChange={(v) => setTweak("palette", v)}
             options={[
               { label: "Preto",    value: "black" },
+              { label: "Branco",   value: "white" },
               { label: "Azul cl.", value: "blue" },
             ]}
           />

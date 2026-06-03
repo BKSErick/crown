@@ -445,7 +445,7 @@ function ProfessionalNoticeSection({ navigate }) {
     <section className="section-sm reveal" style={{ background: "var(--section-alt)" }}>
       <div className="container">
         <div style={{
-          background: "linear-gradient(135deg, var(--hero-grad-2) 0%, #0d1729 100%)",
+          background: "linear-gradient(135deg, var(--hero-grad-2) 0%, var(--bg-3) 100%)",
           border: "1px solid var(--gold)",
           padding: "56px clamp(28px, 5vw, 72px)",
           position: "relative",
@@ -504,7 +504,7 @@ function TrainingsTeaser({ navigate }) {
       {/* Lab/training abstract bg */}
       <div style={{
         position: "absolute", inset: 0, zIndex: 0,
-        background: "linear-gradient(180deg, var(--bg) 0%, #0a0a0a 50%, var(--bg) 100%)",
+        background: "linear-gradient(180deg, var(--bg) 0%, var(--section-alt) 50%, var(--bg) 100%)",
       }}>
         <svg width="100%" height="100%" style={{ opacity: 0.05 }}>
           <defs>
@@ -544,7 +544,7 @@ function TrainingsTeaser({ navigate }) {
           <div style={{
             position: "relative", aspectRatio: "4/5",
             border: "1px solid var(--gold-line)",
-            background: "linear-gradient(135deg, #0a0a0a 0%, #141414 100%)",
+            background: "linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%)",
             padding: 40,
             display: "flex", flexDirection: "column", justifyContent: "space-between",
           }}>
@@ -585,7 +585,7 @@ function FinalCTASection() {
   return (
     <section style={{
       padding: "120px 0",
-      background: "linear-gradient(135deg, #050505 0%, var(--hero-grad-2) 100%)",
+      background: "linear-gradient(135deg, var(--bg) 0%, var(--hero-grad-2) 100%)",
       position: "relative", overflow: "hidden",
       borderTop: "1px solid var(--gold-line)",
       borderBottom: "1px solid var(--gold-line)",

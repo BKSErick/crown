@@ -23,6 +23,29 @@
   --on-gold: #0a0a0a;
   --hero-grad-1: #050505;
   --hero-grad-2: #0B1F33;
+  --header-bg: rgba(5,5,5,0.85);
+}
+
+/* Paleta branca (claro) */
+[data-palette="white"] {
+  --bg: #FFFFFF;
+  --bg-2: #F6F5F2;
+  --bg-3: #EFEDE8;
+  --surface: #FFFFFF;
+  --surface-2: #F3F1EC;
+  --gold: #B8923A;
+  --gold-soft: #b8923a1f;
+  --gold-line: #b8923a33;
+  --gold-glow: #b8923a44;
+  --text: #141414;
+  --text-muted: #595959;
+  --text-dim: #8A8A8A;
+  --line: #E4E2DD;
+  --section-alt: #F7F6F2;
+  --on-gold: #FFFFFF;
+  --hero-grad-1: #FFFFFF;
+  --hero-grad-2: #EEF2F6;
+  --header-bg: rgba(255,255,255,0.88);
 }
 
 /* Paleta clínica azul */
